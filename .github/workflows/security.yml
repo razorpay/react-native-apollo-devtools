@@ -13,9 +13,6 @@ jobs:
     secrets:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
 
-  scan-dependencies:
-    uses: razorpay/security-action/.github/workflows/dependency-scanner.yml@master
-
   security-statuscheck:
     needs: [security-sast, scan-dependencies]
     if: always()
