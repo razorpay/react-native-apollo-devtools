@@ -1,0 +1,24 @@
+name: Security
+on:
+  # eslint-disable-next-line yml/no-empty-mapping-value
+  workflow_dispatch:
+  pull_request: {}
+  push:
+    branches: ["master"]
+  schedule:
+    - cron: "30 20 * * *"
+jobs:
+  security-sast:
+    uses: razorpay/security-action/.github/workflows/semgrep.yml@master
+    secrets:
+      SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+  scan-dependencies:
+    uses: razorpay/security-action/.github/workflows/dependency-scanner.yml@master
+
+  security-statuscheck:
+    needs: [security-sast, scan-dependencies]
+    if: always()
+    uses: razorpay/security-action/.github/workflows/status_check.yml@master
+    with:
+      WORKFLOW_RESULT: ${{ needs.security-sast.result == 'success' && needs.scan-dependencies.result == 'success' && needs.security-sast.result != 'cancelled' && needs.security-sast.result != 'failure' && needs.scan-dependencies.result != 'cancelled' && needs.scan-dependencies.result != 'failure'}}
