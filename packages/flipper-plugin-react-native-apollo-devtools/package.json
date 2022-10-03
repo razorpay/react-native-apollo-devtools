@@ -1,0 +1,60 @@
+{
+  "$schema": "https://fbflipper.com/schemas/plugin-package/v2.json",
+  "name": "flipper-plugin-react-native-apollo-devtools",
+  "id": "react-native-apollo-devtools",
+  "version": "1.0.0",
+  "pluginType": "client",
+  "main": "dist/bundle.js",
+  "flipperBundlerEntry": "src/index.tsx",
+  "license": "MIT",
+  "keywords": [
+    "flipper-plugin",
+    "apollo client devtool",
+    "react native apollo devtool"
+  ],
+  "icon": "rocket",
+  "title": "Apollo Devtools",
+  "bugs": {
+    "email": "mohit.lodha@razorpay.com"
+  },
+  "scripts": {
+    "lint": "flipper-pkg lint",
+    "prepack": "flipper-pkg lint && flipper-pkg bundle",
+    "build": "flipper-pkg bundle",
+    "watch": "flipper-pkg bundle --watch",
+    "test": "jest --no-watchman",
+    "pack": "flipper-pkg pack"
+  },
+  "peerDependencies": {
+    "@emotion/styled": "latest",
+    "antd": "latest",
+    "flipper-plugin": "^0.131.1",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@apollo/client": "^3.3.13",
+    "@babel/preset-react": "latest",
+    "@babel/preset-typescript": "latest",
+    "@emotion/styled": "latest",
+    "@testing-library/react": "latest",
+    "@types/jest": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "antd": "latest",
+    "flipper-pkg": "latest",
+    "flipper-plugin": "latest",
+    "graphql": "latest",
+    "jest": "latest",
+    "jest-mock-console": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "^4.5.5"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFiles": [
+      "<rootDir>/jest-setup.ts"
+    ]
+  }
+}
