@@ -90,6 +90,7 @@ function debounce(func: (...args: any) => any, timeout = 500): () => any {
   return (...args) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
+      // @ts-expect-error add typings for this
       func.apply(this, args);
     }, timeout);
   };
