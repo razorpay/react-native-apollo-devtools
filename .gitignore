@@ -2,3 +2,5 @@ node_modules
 packages/**/node_modules
 packages/.DS_Store
 .DS_Store
+packages/**/lib
+packages/**/example
