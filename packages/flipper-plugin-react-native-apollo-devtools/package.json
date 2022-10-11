@@ -8,9 +8,11 @@
   "flipperBundlerEntry": "src/index.tsx",
   "license": "MIT",
   "keywords": [
+    "graphql",
     "flipper-plugin",
-    "apollo client devtool",
-    "react native apollo devtool"
+    "apollo client",
+    "devtool",
+    "react native"
   ],
   "icon": "rocket",
   "title": "Apollo Devtools",
@@ -58,4 +60,3 @@
     ]
   }
 }
-
