@@ -5,9 +5,9 @@
 1. Install dependecies
         
 ```
-yarn add react-native-apollo-devtools-client
+yarn add -D react-native-apollo-devtools-client
 
-yarn add react-native-flipper
+yarn add -D react-native-flipper
 ```
 
 2. Initialize the plugin with apollo client
