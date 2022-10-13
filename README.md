@@ -1,5 +1,9 @@
 ## 🚀 React Native Apollo Devtools
 
+[Flipper](https://github.com/facebook/flipper) plugin to debug [apollo client](https://github.com/apollographql/apollo-client) cache, queries and mutations for React Native.
+
+The [official apollo client devtool](https://github.com/apollographql/apollo-client-devtools) does not supports React Native and only works for web, so this plugin provides complete feature parity with the official apollo devtool for React Native.
+
 #### 📱 Setting up mobile app
 
 1. Install dependecies
