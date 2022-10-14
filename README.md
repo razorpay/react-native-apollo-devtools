@@ -1,13 +1,18 @@
-## 🚀 React Native Apollo Devtools
+# 🚀 React Native Apollo Devtools
 
-#### 📱 Setting up mobile app
+[Flipper](https://github.com/facebook/flipper) plugin to debug [apollo client](https://github.com/apollographql/apollo-client) cache, queries and mutations for React Native.
+
+The [official apollo client devtool](https://github.com/apollographql/apollo-client-devtools) does not supports React Native and only works for web, so this plugin provides complete feature parity with the official devtool for React Native.
+<br />
+
+## 📱 Setting up mobile app
 
 1. Install dependecies
         
 ```
-yarn add react-native-apollo-devtools-client
+yarn add -D react-native-apollo-devtools-client
 
-yarn add react-native-flipper
+yarn add -D react-native-flipper
 ```
 
 2. Initialize the plugin with apollo client
@@ -25,8 +30,7 @@ if(__DEV__){
 
 ```
 
-
-#### 🖥️ Setting up Flipper
+## 🖥️ Setting up Flipper
 
 1. Install [Flipper](https://fbflipper.com/) in your machine, and make sure the emulator/device is recognized by flipper by setting up proper SDK path in flipper settings.
 
@@ -38,3 +42,10 @@ if(__DEV__){
 
 
 ![Untitled-2022-10-11-1036](https://user-images.githubusercontent.com/36567063/195002113-bdb270c2-d03a-45fd-a112-e350963c082b.png)
+
+
+## 📝 License
+
+Licensed under the [MIT License](./LICENSE).
+
+Link to our [Code of Conduct](https://github.com/razorpay/.github/blob/master/CODE_OF_CONDUCT.md)
