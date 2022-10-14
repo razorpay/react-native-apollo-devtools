@@ -2,15 +2,17 @@
   "$schema": "https://fbflipper.com/schemas/plugin-package/v2.json",
   "name": "flipper-plugin-react-native-apollo-devtools",
   "id": "react-native-apollo-devtools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "pluginType": "client",
   "main": "dist/bundle.js",
   "flipperBundlerEntry": "src/index.tsx",
   "license": "MIT",
   "keywords": [
+    "graphql",
     "flipper-plugin",
-    "apollo client devtool",
-    "react native apollo devtool"
+    "apollo client",
+    "devtool",
+    "react native"
   ],
   "icon": "rocket",
   "title": "Apollo Devtools",
@@ -58,4 +60,3 @@
     ]
   }
 }
-
