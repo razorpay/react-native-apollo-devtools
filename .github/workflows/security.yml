@@ -13,3 +13,9 @@ jobs:
     steps:
       - name: my-step
         run: echo "TODO!"
+
+  security-statuscheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "TODO!"
