@@ -4,10 +4,9 @@ import type { ApolloClientType, Callback } from './typings';
 
 export const apolloDevToolsInit = (
   client: ApolloClientType,
-  {
-    onConnect,
-  }: {
+  config?: {
     onConnect?: Callback;
+    onDisconnect?: Callback;
   }
 ): void =>
   addPlugin({
@@ -16,9 +15,9 @@ export const apolloDevToolsInit = (
     },
     onConnect(connection) {
       initializeFlipperUtils(connection, client);
-      if (onConnect) onConnect();
+      if (config?.onConnect) config?.onConnect();
     },
     onDisconnect() {
-      console.log('apollo:disconnected');
+      if (config?.onDisconnect) config?.onDisconnect();
     },
   });

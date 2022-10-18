@@ -1,6 +1,6 @@
 {
   "name": "react-native-apollo-devtools-client",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Apollo devtools for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
