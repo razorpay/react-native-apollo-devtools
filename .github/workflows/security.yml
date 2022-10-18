@@ -9,7 +9,7 @@ on:
 jobs:
   semgrep:
     name: Scan
-    runs-on: [self-hosted] # nosemgrep : semgrep.dev/s/swati31196:github_provided_runner
+    runs-on: [ubuntu-latest] # nosemgrep : semgrep.dev/s/swati31196:github_provided_runner
     steps:
       - uses: actions/checkout@v2
       - uses: returntocorp/semgrep-action@v1
