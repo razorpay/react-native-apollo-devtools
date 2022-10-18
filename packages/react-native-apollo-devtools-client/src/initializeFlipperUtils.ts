@@ -10,7 +10,7 @@ import type {
   MutationData,
 } from './typings';
 
-let counter = 0;
+let tick = 0;
 
 function getTime(): string {
   const date = new Date();
@@ -65,14 +65,14 @@ function getAllMutations(client: ApolloClientType): ArrayOfMutations {
 }
 
 function getCurrentState(client: ApolloClientType): Promise<ApolloClientState> {
-  counter++;
+  tick++;
 
   let currentState: ApolloClientState;
 
   return new Promise((res) => {
     setTimeout(() => {
       currentState = {
-        id: counter,
+        id: tick,
         lastUpdateAt: getTime(),
         queries: getAllQueries(client),
         mutations: getAllMutations(client),
@@ -101,19 +101,21 @@ export const initializeFlipperUtils = async (
   apolloClient: ApolloClientType
 ): Promise<void> => {
   let acknowledged = true;
-  let enqueue: null | ApolloClientState = await getCurrentState(apolloClient);
+  let apolloData: null | ApolloClientState = await getCurrentState(
+    apolloClient
+  );
 
   function sendData(): void {
-    if (enqueue) {
-      flipperConnection.send('GQL:response', enqueue);
+    if (apolloData) {
+      flipperConnection.send('GQL:response', apolloData);
       acknowledged = false;
-      enqueue = null;
+      apolloData = null;
     }
   }
 
   const logger = async (): Promise<void> => {
     if (acknowledged) {
-      enqueue = await getCurrentState(apolloClient);
+      apolloData = await getCurrentState(apolloClient);
       sendData();
     }
   };
@@ -129,5 +131,5 @@ export const initializeFlipperUtils = async (
 
   apolloClient.__actionHookForDevTools(debounce(() => logger()));
 
-  flipperConnection.send('GQL:response', enqueue);
+  flipperConnection.send('GQL:response', apolloData);
 };
