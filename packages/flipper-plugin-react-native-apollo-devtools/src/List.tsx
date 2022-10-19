@@ -39,21 +39,21 @@ export function List({ data, activeTab, selectedItem, onItemSelect, onTabChange 
     activeTab: string,
     selectedItem: BlockType,
     onItemSelect: (block: BlockType) => void,
-    onTabChange: React.Dispatch<React.SetStateAction<string>>
+    onTabChange: (nextTab: string)=> void
 }) {
     return (
         <Layout.ScrollContainer>
             <Tabs defaultActiveKey="1" onChange={onTabChange}>
                 {/* CACHE */}
                 <TabPane tab={TabsEnum.cache.value} key={TabsEnum.cache.key}>
-                    {data?.cache?.map((d, i) => {
+                    {data?.cache?.map((d) => {
                         const active =
                             activeTab === TabsEnum.cache.key &&
                             selectedItem?.name === d?.name;
 
                         return (
                             <TabItem
-                                key={`cache${d?.id}${i}`}
+                                key={`cache${d?.id}`}
                                 active={active}
                                 onPress={onItemSelect}
                                 data={d}
@@ -67,6 +67,7 @@ export function List({ data, activeTab, selectedItem, onItemSelect, onTabChange 
                         const active =
                             activeTab === TabsEnum.query.key &&
                             selectedItem?.id === d?.id;
+
 
                         return (
                             <TabItem

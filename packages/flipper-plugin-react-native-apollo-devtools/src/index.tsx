@@ -14,6 +14,8 @@ const InitialData = {
   cache: [],
 };
 
+let scheduler: NodeJS.Timeout;
+
 export function plugin(client: PluginClient<Events, {}>) {
   const data = createState<Data>(InitialData, { persist: "data" });
   const selectedItem = createState<BlockType>({});
@@ -35,7 +37,7 @@ export function plugin(client: PluginClient<Events, {}>) {
     label: "*️⃣ clear",
     handler: async () => {
       data.set(InitialData);
-      selectedItem.set({})
+      clearSelectedItem()
     },
   });
 
@@ -47,6 +49,17 @@ export function plugin(client: PluginClient<Events, {}>) {
     },
   });
 
+  client.onConnect(() => {
+    scheduler = setInterval(() => {
+      // @ts-expect-error string is not assignable to never
+      client.send("GQL:request", {});
+    }, 5000);
+  });
+
+  client.onDisconnect(() => {
+    clearInterval(scheduler)
+  });
+
   function onCopyText(text: string) {
     client.writeTextToClipboard(text);
     message.success("Copied successfully 🎉");
@@ -56,7 +69,11 @@ export function plugin(client: PluginClient<Events, {}>) {
     selectedItem.set(block)
   }
 
-  return { data, onCopyText, selectedItem, handleSelectedItem };
+  function clearSelectedItem() {
+    selectedItem.set({})
+  }
+
+  return { data, onCopyText, selectedItem, handleSelectedItem, clearSelectedItem };
 }
 
 
@@ -66,12 +83,17 @@ export function Component() {
   const selectedItem = useValue(instance.selectedItem);
   const [activeTab, setActiveTab] = useState(TabsEnum.cache.key);
 
+  function handleTabChange(nextTab: string) {
+    setActiveTab(nextTab);
+    instance.clearSelectedItem()
+  }
+
   return (
     <>
       <Typography.Title level={3}>
         ⚛️  React Native Apollo Devtool
       </Typography.Title>
-      <List data={data} activeTab={activeTab} selectedItem={selectedItem} onItemSelect={instance.handleSelectedItem} onTabChange={setActiveTab} />
+      <List data={data} activeTab={activeTab} selectedItem={selectedItem} onItemSelect={instance.handleSelectedItem} onTabChange={handleTabChange} />
       <Details selectedItem={selectedItem} onCopy={instance.onCopyText} />
     </>
   );
