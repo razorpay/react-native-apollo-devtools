@@ -4,6 +4,9 @@
 
 The [official apollo client devtool](https://github.com/apollographql/apollo-client-devtools) does not supports React Native and only works for web, so this plugin provides complete feature parity with the official devtool for React Native.
 <br />
+<br />
+<img width="1172" alt="image" src="https://user-images.githubusercontent.com/36567063/196852057-71418605-a873-4523-b059-7b3364b35d86.png">
+<br />
 
 ## 📱 Setting up mobile app
 
