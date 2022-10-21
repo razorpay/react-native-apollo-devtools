@@ -49,9 +49,12 @@ if(__DEV__){
 
 ![Untitled-2022-10-11-1036](https://user-images.githubusercontent.com/36567063/195002113-bdb270c2-d03a-45fd-a112-e350963c082b.png)
 
+## ⭐ Stargazers
+
+[![Stargazers repo roster for @razorpay/react-native-apollo-devtools](https://reporoster.com/stars/razorpay/react-native-apollo-devtools)](https://github.com/razorpay/react-native-apollo-devtools/stargazers)
 
 ## 📝 License
 
-Licensed under the [MIT License](./LICENSE).
+Licensed under the [MIT License](./LICENSE.md).
 
 Link to our [Code of Conduct](https://github.com/razorpay/.github/blob/master/CODE_OF_CONDUCT.md)
