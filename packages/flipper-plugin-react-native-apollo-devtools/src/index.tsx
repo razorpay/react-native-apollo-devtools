@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { PluginClient, usePlugin, createState, useValue } from "flipper-plugin";
-import { Typography, message } from "antd";
+import { message } from "antd";
 import { BlockType, Data, Events } from './typings'
 import { Details } from './Details'
 import { List, TabsEnum } from './List'
 import { createCacheBlock, createMutationBlocks, createQueryBlocks } from './utils'
+import { Header } from './Header';
 
 const InitialData = {
   id: "x",
@@ -14,11 +15,30 @@ const InitialData = {
   cache: [],
 };
 
-let scheduler: NodeJS.Timeout;
+let timer: NodeJS.Timeout;
+
+function debounce(func: (...args: any) => any, timeout = 7000): void {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    // @ts-expect-error add typings for this
+    func.apply(this);
+  }, timeout);
+}
 
 export function plugin(client: PluginClient<Events, {}>) {
   const data = createState<Data>(InitialData, { persist: "data" });
   const selectedItem = createState<BlockType>({});
+
+  const resyncData = () => {
+    debounce(() => {
+      // @ts-expect-error string is not assignable to never
+      client.send("GQL:request", {});
+    })
+  }
+
+  const resetSync = () => {
+    clearTimeout(timer);
+  }
 
   client.onMessage("GQL:response", (newData) => {
     const finalData = {
@@ -31,13 +51,14 @@ export function plugin(client: PluginClient<Events, {}>) {
     data.set(finalData as Data);
     // @ts-expect-error
     client.send("GQL:ack", {});
+    resyncData();
   });
 
   client.addMenuEntry({
     label: "*️⃣ clear",
     handler: async () => {
       data.set(InitialData);
-      clearSelectedItem()
+      clearSelectedItem();
     },
   });
 
@@ -49,15 +70,13 @@ export function plugin(client: PluginClient<Events, {}>) {
     },
   });
 
-  client.onConnect(() => {
-    scheduler = setInterval(() => {
-      // @ts-expect-error string is not assignable to never
-      client.send("GQL:request", {});
-    }, 5000);
+
+  client.onDestroy(() => {
+    resetSync();
   });
 
   client.onDisconnect(() => {
-    clearInterval(scheduler)
+    resetSync();
   });
 
   function onCopyText(text: string) {
@@ -66,11 +85,11 @@ export function plugin(client: PluginClient<Events, {}>) {
   }
 
   function handleSelectedItem(block: BlockType) {
-    selectedItem.set(block)
+    selectedItem.set(block);
   }
 
   function clearSelectedItem() {
-    selectedItem.set({})
+    selectedItem.set({});
   }
 
   return { data, onCopyText, selectedItem, handleSelectedItem, clearSelectedItem };
@@ -90,9 +109,7 @@ export function Component() {
 
   return (
     <>
-      <Typography.Title level={3}>
-        ⚛️  React Native Apollo Devtool
-      </Typography.Title>
+      <Header />
       <List data={data} activeTab={activeTab} selectedItem={selectedItem} onItemSelect={instance.handleSelectedItem} onTabChange={handleTabChange} />
       <Details selectedItem={selectedItem} onCopy={instance.onCopyText} />
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Layout,
   DataInspector,
@@ -22,7 +22,7 @@ export function Details({ selectedItem, onCopy }: { selectedItem: BlockType, onC
           const key = `block${index}`;
           if (block.blockType === "GQLString") {
             return (
-              <>
+              <Fragment key={key}>
                 <Typography.Title key={key} level={4} type="secondary">
                   {block?.blockLabel}
                 </Typography.Title>
@@ -30,12 +30,12 @@ export function Details({ selectedItem, onCopy }: { selectedItem: BlockType, onC
                   <pre>{block?.blockValue?.trim()}</pre>
                 </Typography.Text>
                 <br />
-              </>
+              </Fragment>
             );
           } else if (block.blockType === "Object") {
             return (
-              <>
-                <Typography.Title key={key} level={4} type="secondary">
+              <Fragment key={key}>
+                <Typography.Title level={4} type="secondary">
                   {block?.blockLabel}
                   <Tooltip title="copy">
                     <Button
@@ -54,7 +54,7 @@ export function Details({ selectedItem, onCopy }: { selectedItem: BlockType, onC
                 </Typography.Title>
                 <DataInspector data={block?.blockValue} expandRoot={true} />
                 <br />
-              </>
+              </Fragment>
             );
           } else {
             return null;
