@@ -46,14 +46,14 @@ export function List({ data, activeTab, selectedItem, onItemSelect, onTabChange 
             <Tabs defaultActiveKey="1" onChange={onTabChange}>
                 {/* CACHE */}
                 <TabPane tab={TabsEnum.cache.value} key={TabsEnum.cache.key}>
-                    {data?.cache?.map((d) => {
+                    {data?.cache?.map((d,i) => {
                         const active =
                             activeTab === TabsEnum.cache.key &&
                             selectedItem?.name === d?.name;
 
                         return (
                             <TabItem
-                                key={`cache${d?.id}`}
+                                key={`cache${d?.id}${i}`}
                                 active={active}
                                 onPress={onItemSelect}
                                 data={d}
