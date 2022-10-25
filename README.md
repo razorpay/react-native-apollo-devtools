@@ -1,6 +1,6 @@
 # 🚀 React Native Apollo Devtools
 
-<img src="https://img.shields.io/npm/dm/react-native-apollo-devtools-client?label=npm&style=flat-square" />
+[<img src="https://img.shields.io/npm/dm/react-native-apollo-devtools-client?label=npm&style=flat-square" />](https://www.npmjs.com/package/react-native-apollo-devtools-client)
 
 
 [Flipper](https://github.com/facebook/flipper) plugin to visualise [apollo client](https://github.com/apollographql/apollo-client) cache, queries and mutations for React Native.
