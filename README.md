@@ -1,6 +1,9 @@
 # 🚀 React Native Apollo Devtools
 
-[Flipper](https://github.com/facebook/flipper) plugin to debug [apollo client](https://github.com/apollographql/apollo-client) cache, queries and mutations for React Native.
+<img src="https://img.shields.io/npm/dm/react-native-apollo-devtools-client?label=npm&style=flat-square" />
+
+
+[Flipper](https://github.com/facebook/flipper) plugin to visualise [apollo client](https://github.com/apollographql/apollo-client) cache, queries and mutations for React Native.
 
 The [official apollo client devtool](https://github.com/apollographql/apollo-client-devtools) does not supports React Native and only works for web, so this plugin provides complete feature parity with the official devtool for React Native.
 <br />
@@ -49,9 +52,12 @@ if(__DEV__){
 
 ![Untitled-2022-10-11-1036](https://user-images.githubusercontent.com/36567063/195002113-bdb270c2-d03a-45fd-a112-e350963c082b.png)
 
+## ⭐ Stargazers
+
+[![Stargazers repo roster for @razorpay/react-native-apollo-devtools](https://reporoster.com/stars/razorpay/react-native-apollo-devtools)](https://github.com/razorpay/react-native-apollo-devtools/stargazers)
 
 ## 📝 License
 
-Licensed under the [MIT License](./LICENSE).
+Licensed under the [MIT License](./LICENSE.md).
 
 Link to our [Code of Conduct](https://github.com/razorpay/.github/blob/master/CODE_OF_CONDUCT.md)
