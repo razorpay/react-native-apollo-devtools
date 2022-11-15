@@ -7,6 +7,8 @@
 
 This plugin offers feature parity with the official devtool for React Native since the [official apollo client devtool](https://github.com/apollographql/apollo-client-devtools) only supports web platform and does not supports React Native.
 
+Read more about it in our blog post [here](https://engineering.razorpay.com/apollo-client-devtools-for-flipper-bc5337b3a411).
+
 <img width="1172" alt="image" src="https://user-images.githubusercontent.com/36567063/196852057-71418605-a873-4523-b059-7b3364b35d86.png">
 
 ###### *Devtools in action with the Ricky and Morty GraphQL API based react native [sample app](https://github.com/HarrisonHenri/rick-morty-react-native-shop)*
