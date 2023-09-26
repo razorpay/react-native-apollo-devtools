@@ -1,12 +1,13 @@
+import { Layout, message } from "antd";
+import { PluginClient, createState, usePlugin, useValue } from "flipper-plugin";
 import React, { useState } from "react";
-import { PluginClient, usePlugin, createState, useValue } from "flipper-plugin";
-import { message } from "antd";
-import { BlockType, Data, Events } from './typings'
-import { Details } from './Details'
-import { List, TabsEnum } from './List'
-import { createCacheBlock, createMutationBlocks, createQueryBlocks } from './utils'
+import { Details } from './Details';
 import { Header } from './Header';
+import { List, TabsEnum } from './List';
+import { BlockType, Data, Events } from './typings';
+import { createCacheBlock, createMutationBlocks, createQueryBlocks } from './utils';
 
+const { Content } = Layout;
 const InitialData = {
   id: "x",
   lastUpdateAt: new Date(),
@@ -97,6 +98,7 @@ export function plugin(client: PluginClient<Events, {}>) {
 
 
 export function Component() {
+  const [filter, setFilter] = useState('');
   const instance = usePlugin(plugin);
   const data = useValue(instance.data);
   const selectedItem = useValue(instance.selectedItem);
@@ -108,10 +110,10 @@ export function Component() {
   }
 
   return (
-    <>
-      <Header />
-      <List data={data} activeTab={activeTab} selectedItem={selectedItem} onItemSelect={instance.handleSelectedItem} onTabChange={handleTabChange} />
+    <Layout style={{ background: 'white', padding: '4px'}}>
+      <Header onFilter={setFilter}/>
+      <List data={data} filter={filter} activeTab={activeTab} selectedItem={selectedItem} onItemSelect={instance.handleSelectedItem} onTabChange={handleTabChange} />
       <Details selectedItem={selectedItem} onCopy={instance.onCopyText} />
-    </>
+    </Layout>
   );
 }
