@@ -1,12 +1,17 @@
+import { Layout, message } from "antd";
+import { PluginClient, createState, usePlugin, useValue } from "flipper-plugin";
 import React, { useState } from "react";
-import { PluginClient, usePlugin, createState, useValue } from "flipper-plugin";
-import { message } from "antd";
-import { BlockType, Data, Events } from './typings'
-import { Details } from './Details'
-import { List, TabsEnum } from './List'
-import { createCacheBlock, createMutationBlocks, createQueryBlocks } from './utils'
-import { Header } from './Header';
+import { Details } from "./Details";
+import { Header } from "./Header";
+import { List, TabsEnum } from "./List";
+import { BlockType, Data, Events } from "./typings";
+import {
+  createCacheBlock,
+  createMutationBlocks,
+  createQueryBlocks,
+} from "./utils";
 
+const { Content } = Layout;
 const InitialData = {
   id: "x",
   lastUpdateAt: new Date(),
@@ -33,12 +38,12 @@ export function plugin(client: PluginClient<Events, {}>) {
     debounce(() => {
       // @ts-expect-error string is not assignable to never
       client.send("GQL:request", {});
-    })
-  }
+    });
+  };
 
   const resetSync = () => {
     clearTimeout(timer);
-  }
+  };
 
   client.onMessage("GQL:response", (newData) => {
     const finalData = {
@@ -70,7 +75,6 @@ export function plugin(client: PluginClient<Events, {}>) {
     },
   });
 
-
   client.onDestroy(() => {
     resetSync();
   });
@@ -92,11 +96,17 @@ export function plugin(client: PluginClient<Events, {}>) {
     selectedItem.set({});
   }
 
-  return { data, onCopyText, selectedItem, handleSelectedItem, clearSelectedItem };
+  return {
+    data,
+    onCopyText,
+    selectedItem,
+    handleSelectedItem,
+    clearSelectedItem,
+  };
 }
 
-
 export function Component() {
+  const [filter, setFilter] = useState("");
   const instance = usePlugin(plugin);
   const data = useValue(instance.data);
   const selectedItem = useValue(instance.selectedItem);
@@ -104,14 +114,22 @@ export function Component() {
 
   function handleTabChange(nextTab: string) {
     setActiveTab(nextTab);
-    instance.clearSelectedItem()
+    instance.clearSelectedItem();
+    setFilter("");
   }
 
   return (
-    <>
-      <Header />
-      <List data={data} activeTab={activeTab} selectedItem={selectedItem} onItemSelect={instance.handleSelectedItem} onTabChange={handleTabChange} />
+    <Layout style={{ padding: "14px" }}>
+      <Header filter={filter} onFilter={setFilter} />
+      <List
+        data={data}
+        filter={filter}
+        activeTab={activeTab}
+        selectedItem={selectedItem}
+        onItemSelect={instance.handleSelectedItem}
+        onTabChange={handleTabChange}
+      />
       <Details selectedItem={selectedItem} onCopy={instance.onCopyText} />
-    </>
+    </Layout>
   );
 }

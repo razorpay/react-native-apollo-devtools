@@ -1,14 +1,16 @@
 import React, { Fragment } from "react";
-import {
-  Layout,
-  DataInspector,
-  DetailSidebar,
-} from "flipper-plugin";
+import { Layout, DataInspector, DetailSidebar } from "flipper-plugin";
 import { Button, Typography, Tooltip } from "antd";
 import { CopyOutlined } from "@ant-design/icons";
 import { BlockType } from "./typings";
 
-export function Details({ selectedItem, onCopy }: { selectedItem: BlockType, onCopy: (...args: any) => void }) {
+export function Details({
+  selectedItem,
+  onCopy,
+}: {
+  selectedItem: BlockType;
+  onCopy: (...args: any) => void;
+}) {
   return (
     <DetailSidebar width={350}>
       <Layout.Container gap pad>
@@ -40,9 +42,7 @@ export function Details({ selectedItem, onCopy }: { selectedItem: BlockType, onC
                   <Tooltip title="copy">
                     <Button
                       onClick={() =>
-                        onCopy(
-                          `${JSON.stringify(block?.blockValue)}`,
-                        )
+                        onCopy(`${JSON.stringify(block?.blockValue)}`)
                       }
                       style={{ marginLeft: 10 }}
                       size="small"
@@ -62,5 +62,5 @@ export function Details({ selectedItem, onCopy }: { selectedItem: BlockType, onC
         })}
       </Layout.Container>
     </DetailSidebar>
-  )
+  );
 }
