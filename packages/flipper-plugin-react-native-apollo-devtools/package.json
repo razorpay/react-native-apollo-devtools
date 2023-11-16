@@ -2,7 +2,7 @@
   "$schema": "https://fbflipper.com/schemas/plugin-package/v2.json",
   "name": "flipper-plugin-react-native-apollo-devtools",
   "id": "react-native-apollo-devtools",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "pluginType": "client",
   "main": "dist/bundle.js",
   "flipperBundlerEntry": "src/index.tsx",
