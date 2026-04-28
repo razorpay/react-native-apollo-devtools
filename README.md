@@ -3,8 +3,6 @@
 [<img src="https://img.shields.io/npm/dm/react-native-apollo-devtools-client?label=npm&style=flat-square" />](https://www.npmjs.com/package/react-native-apollo-devtools-client)
 
 
-Devtools client to visualise [apollo client](https://github.com/apollographql/apollo-client) cache, queries and mutations for React Native.
-
 This plugin offers feature parity with the official devtool for React Native since the [official apollo client devtool](https://github.com/apollographql/apollo-client-devtools) only supports web platform and does not supports React Native.
 
 ## 📱 Setting up mobile app
