@@ -1,0 +1,37 @@
+service: react-native-apollo-devtools  # required, canonical slug — immutable once registered
+displayName: "React Native Apollo Devtools"  # repo README title
+description: "Flipper plugin (npm package react-native-apollo-devtools-client) to debug the Apollo Client cache in React Native apps, offering feature parity with the web Apollo devtools."  # repo README + GitHub repo description
+type: library  # a published Flipper plugin/npm package — no server deployment
+tier: T3  # developer tooling (debugging); no production blast radius
+lifecycle: live  # created 2022-09, last push 2026-07-15; published on npm
+
+domain: razorpay1/experience  # seed l1 razorpay1 (SME Payments); a mobile-app debugging tool for Razorpay's consumer/merchant apps — existing razorpay1/experience area; TO VERIFY with the SME Payments POD lead
+
+owner:
+  team:  # required, owning team slug — TO FILL: this repo has no CODEOWNERS file, .github/repo_owners.json carries no team slug, and the GitHub repository-teams API is not readable with the current token; ask the POD lead for the owning GitHub team
+  em:  # name | @slack | email — TO FILL: DevRev runnable owner not found in SuccessFactors
+  org_group:  # SuccessFactors group of the EM — TO FILL: the declared owner has no SuccessFactors record, so the org tree cannot be resolved; ask the POD lead
+  org_sub_group:  # SuccessFactors sub-group of the EM — TO FILL: the declared owner has no SuccessFactors record; ask the POD lead
+  org_pod:  # SuccessFactors pod of the EM — TO FILL: the declared owner has no SuccessFactors record; ask the POD lead
+  pm:  # product manager — TO FILL. Not derived on purpose: mapping the org tree to a PM is unreliable because PMs own products across org boundaries. Ask the POD lead.
+  overrides: []  # optional, region-scoped owner overrides — TO FILL only if some region is owned by a different team; each entry is a "region" code plus the owning "team" slug
+
+links:
+  repo: "https://github.com/razorpay/react-native-apollo-devtools"  # canonical GitHub repo URL
+  alerts_repo:  # this service's alert rules in razorpay/alert-rules — TO FILL: no matching ruleset found; add one in razorpay/alert-rules, then link the file here
+  slos:  # SLO definitions — TO FILL: no slo.yaml at this repo root and no sloth ruleset for it under razorpay/alert-rules/slo/prod (the two places SLOs are defined today); add one there and link it here
+  slack_channel:  # TO FILL: no Slack channel naming 'apollo-devtools' or 'flipper' found in the directory; ask the SME Payments POD lead
+  zenduty_policy:  # Zenduty policy/service name used for paging — TO FILL: the service-to-policy mapping is not in DevRev or alert-rules for this service; it lives in the external Zenduty policies sheet
+  escalation_l1:  # service EM — TO FILL: no owner could be resolved for this service
+  escalation_l2:  # EM's manager — TO FILL: the EM has no SuccessFactors record, so no manager chain is available
+  escalation_l3:  # manager's manager — TO FILL: the EM has no SuccessFactors record, so no manager chain is available
+  oncall_handle:  # Slack/PagerDuty oncall handle or usergroup — TO FILL: not set on the DevRev runnable
+  runbook:  # link to the incident runbook — TO FILL: no runbook directory for this service in razorpay/rzp-oncall-agent; add one or link the Google Doc / alpha.razorpay.com page
+  api_docs:  # API documentation — TO FILL: no swagger/openapi/proto found in the repo tree; link the API spec or Postman collection
+  dashboard:  # primary dashboard — TO FILL: Grafana (vajra) / Coralogix dashboard URL for this service (see per-region links below)
+  logs_and_traces: "https://razorpay-prod.app.coralogix.in/#/query-new/archive-logs"  # org-standard prod Coralogix — filter subsystem "react-native-apollo-devtools"
+  strategy_okr:  # TO FILL: link the FY strategy doc for the owning group.
+  risk_assessment:  # TO FILL: no .agents/skills/risk-assessment in this repo; add the per-repo risk-assessment skill
+  regions:  # per-region links — TO FILL: no prod region deployment found for this service in spinacode or alert-rules; add a block per geography once it ships
+
+dependencies: []  # optional, declared service dependencies — TO FILL: shape: - service: <slug> for internal deps, - vendor: <name> for external (gateways, banks)
